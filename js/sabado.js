@@ -1,0 +1,155 @@
+import { hectareaje, margenError, terreno } from "../index.js";
+ 
+export function calcularDiaSabado(modulo, anterior){
+    document.querySelector('.hectareaje').disabled = true;
+   switch (modulo) {
+       case "Modulo3":
+           const modulo3valorsabado = 52 - anterior;
+           document.querySelector(".modulo3sabado").value = modulo3valorsabado;
+       
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo3valorsabado + i;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo2sabado").value = i;
+                       document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo3valorsabado + i + j*1.05;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo2sabado").value = i;
+                               document.querySelector(".modulo1sabado").value = j;
+                               document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+
+           break;
+       case "Modulo2":
+           const modulo2valorsabado = 53 - anterior;
+           document.querySelector(".modulo2sabado").value = modulo2valorsabado;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 52; i++) {
+               const lineasTotales = modulo2valorsabado + i*1.05;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo1sabado").value = i;
+                       document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                       break;
+               }else {
+                   if (i === 52) {
+                       for (let j = 1; j <= 53; j++) {
+                           const lineasTotales =  modulo2valorsabado + i*1.05 + j*2/6;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo1sabado").value = i;
+                               document.querySelector(".modulo4sabado").value = j;
+                               document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           
+           break;
+       case "Modulo1":
+           const modulo1valorsabado = 52 - anterior;
+           document.querySelector(".modulo1sabado").value = modulo1valorsabado;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo1valorsabado*1.05 + i*2/6;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo4sabado").value = i;
+                       document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo1valorsabado*1.05 + i*2/6 + j;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo4sabado").value = i;
+                               document.querySelector(".modulo2sabado").value = j;
+                               document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           break;
+       case "Modulo4":
+           const modulo4valorsabado = 53 - anterior;
+           document.querySelector(".modulo4sabado").value = modulo4valorsabado;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo4valorsabado*2/6 + i;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo3sabado").value = i;
+                       document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo4valorsabado*2/6 + i + j;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo3sabado").value = i;
+                               document.querySelector(".modulo2sabado").value = j;
+                               document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hassabado").value = Math.round(has*100)/100;
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           break;
+       default:
+           break;
+   }
+}

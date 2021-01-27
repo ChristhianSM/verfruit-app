@@ -1,0 +1,163 @@
+import { hectareaje, margenError, terreno } from "../index.js";
+import { calcularDiaSabado } from "./sabado.js";
+ 
+export function calcularDiaViernes(modulo, anterior){
+   switch (modulo) {
+       case "Modulo3":
+           const modulo3valorviernes = 52 - anterior;
+           document.querySelector(".modulo3viernes").value = modulo3valorviernes;
+       
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo3valorviernes + i;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo2viernes").value = i;
+                       document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                       calcularDiaSabado("Modulo2", i)
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo3valorviernes + i + j*1.05;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo2viernes").value = i;
+                               document.querySelector(".modulo1viernes").value = j;
+                               document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                               calcularDiaSabado("Modulo1", j)
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+
+           break;
+       case "Modulo2":
+           const modulo2valorviernes = 53 - anterior;
+           document.querySelector(".modulo2viernes").value = modulo2valorviernes;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 52; i++) {
+               const lineasTotales = modulo2valorviernes + i*1.05;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo1viernes").value = i;
+                       document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                       calcularDiaSabado("Modulo1", i)
+                       break;
+               }else {
+                   if (i === 52) {
+                       for (let j = 1; j <= 53; j++) {
+                           const lineasTotales =  modulo2valorviernes + i*1.05 + j*2/6;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo1viernes").value = i;
+                               document.querySelector(".modulo4viernes").value = j;
+                               document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                               calcularDiaSabado("Modulo4", j)
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           
+           break;
+       case "Modulo1":
+           const modulo1valorviernes = 52 - anterior;
+           document.querySelector(".modulo1viernes").value = modulo1valorviernes;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo1valorviernes*1.05 + i*2/6;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo4viernes").value = i;
+                       document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                       calcularDiaSabado("Modulo4", i)
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo1valorviernes*1.05 + i*2/6 + j;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo4viernes").value = i;
+                               document.querySelector(".modulo2viernes").value = j;
+                               document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                               calcularDiaSabado("Modulo3", j)
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           break;
+       case "Modulo4":
+           const modulo4valorviernes = 53 - anterior;
+           document.querySelector(".modulo4viernes").value = modulo4valorviernes;
+
+           //For que comprueba los valores
+           for (let i = 1; i <= 53; i++) {
+               const lineasTotales = modulo4valorviernes*2/6 + i;
+               const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+                       //Llenando campos
+                       document.querySelector(".modulo3viernes").value = i;
+                       document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                       document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                       calcularDiaSabado("Modulo3", i)
+                       break;
+               }else {
+                   if (i === 53) {
+                       for (let j = 1; j <= 52; j++) {
+                           const lineasTotales =  modulo4valorviernes*2/6 + i + j;
+                           const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+                           console.log(hectareaje, has, margenError)
+
+                           if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                               //Llenando campos
+                               document.querySelector(".modulo3viernes").value = i;
+                               document.querySelector(".modulo2viernes").value = j;
+                               document.querySelector(".lineastotalesviernes").value = Math.round(lineasTotales*100)/100;
+                               document.querySelector(".hasviernes").value = Math.round(has*100)/100;
+                               calcularDiaSabado("Modulo2", j)
+                               break;
+                           }
+                       }
+                   }
+               }
+           }
+           break;
+       default:
+           break;
+   }
+}

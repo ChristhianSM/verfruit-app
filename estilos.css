@@ -1,0 +1,54 @@
+body{
+    padding: 20px;
+    text-align: center;
+}
+main{
+    justify-content: center;
+}
+input{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 60px;
+}
+
+.margen{
+    text-align: left;
+    margin-left: 45px;
+}
+.modulos label{
+    margin-right: 28px;
+}
+
+.has label{
+    margin-right: 67px;
+}
+
+.hect label {
+    margin-right: 23px;
+}
+
+.encabezado {
+    margin-left: 20px;
+    width: 30px;
+}
+.encabezado1 {
+    margin-left: 45px;
+    width: 30px;
+}
+
+.flex{
+    display: flex;
+}
+
+#botones {
+    text-align: center;
+}
+
+input[type = 'submit']{
+    background-color: green;
+    width: 120px;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
