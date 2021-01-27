@@ -41,6 +41,7 @@ function calcularProgramacion(e){
             const lineasTotales = modulo4valor + i;
             const has = Math.round((lineasTotales*terreno/10000)*100)/100;
             
+            //5.78 5.74 - 5.82 ----------> 5.73 o 5.83
             if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                     //Llenando campos
                     document.querySelector(".modulo3lunes").value = i;
