@@ -6,15 +6,20 @@ main{
     justify-content: center;
 }
 input{
+    text-align: center;
     margin-left: 10px;
     margin-bottom: 10px;
     width: 60px;
 }
-
-.margen{
-    text-align: left;
-    margin-left: 45px;
+small {
+    display: block;
 }
+
+.nota{
+    margin: 50px;
+    align-items: flex-start;
+}
+
 .modulos label{
     margin-right: 28px;
 }
@@ -51,4 +56,5 @@ input[type = 'submit']{
     color: white;
     border: none;
     border-radius: 10px;
+    font-size: 20px;
 }

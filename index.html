@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <h1>VerFruit</h1>
     <label > Modulos</label>
     <label class="encabezado1" > Lunes</label>
     <label class="encabezado" > Martes</label>
@@ -43,7 +44,11 @@
             </div>
             <div class="hect">
                 <label> Hectareaje</label>
-                <input type="text" autocomplete="off"class="hectareaje" value="5.78">
+                <input type="number" autocomplete="off"class="hectareaje">
+            </div>
+            <div class="margen">
+                <label> Marg. de Error</label>
+                <input type="number" autocomplete="off" class="margenError">
             </div>
         </form>
 
@@ -153,16 +158,16 @@
             </div>
         </form>
     </main>
-    <form>
-        <div class="margen">
-            <label> Margen de Error</label>
-            <input type="text" autocomplete="off" class="margenError">
-        </div>
-    </form>
+
     <form action="" id="botones">
         <input type="submit" value="Calcular" id="calcular">
         <input type="submit" value="Limpiar" id="limpiar">
     </form>
+    <div class="nota">
+        <h3 > Nota </h3>
+        <small > *Debe ingresar el hectareaje </small>
+        <small > *Debe ingresar el margen de error entre 0.04 y 0.07</small>
+    </div>
         
     <script src="index.js" type="module"></script>
 </body>

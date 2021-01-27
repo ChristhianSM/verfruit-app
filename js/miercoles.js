@@ -1,12 +1,26 @@
-import { hectareaje, margenError, terreno } from "../index.js";
+import { terreno } from "../index.js";
 import { calcularDiaJueves } from "./jueves.js";
  
-export function calcularDiaMiercoles(modulo, anterior){
+export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
    switch (modulo) {
        case "Modulo3":
-           const modulo3valorMiercoles = 52 - anterior;
+           let modulo3valorMiercoles = 52 - anterior;
            document.querySelector(".modulo3miercoles").value = modulo3valorMiercoles;
-       
+
+           //Validar que el campo cumpla con el has
+           let has = Math.round((modulo3valorMiercoles*terreno/10000)*100)/100;
+           while (has >= hectareaje) {
+                modulo3valorMiercoles--;
+                has = Math.round((modulo3valorMiercoles*terreno/10000)*100)/100;
+                
+                //Llenado de campos
+                document.querySelector(".modulo3Miercoles").value = modulo3valorMiercoles;
+                document.querySelector(".lineastotalesMiercoles").value = Math.round(modulo3valorMiercoles*100)/100;
+                document.querySelector(".hasMiercoles").value = Math.round(has*100)/100;
+                calcularDiaJueves("Modulo3", modulo3valorMiercoles+anterior, hectareaje, margenError);
+                break
+           }
+
            //For que comprueba los valores
            for (let i = 1; i <= 53; i++) {
                const lineasTotales = modulo3valorMiercoles + i;
@@ -17,7 +31,7 @@ export function calcularDiaMiercoles(modulo, anterior){
                        document.querySelector(".modulo2miercoles").value = i;
                        document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                        document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                       calcularDiaJueves("Modulo2",i)
+                       calcularDiaJueves("Modulo2",i, hectareaje, margenError)
                        break;
                }else {
                    if (i === 53) {
@@ -25,7 +39,7 @@ export function calcularDiaMiercoles(modulo, anterior){
                            const lineasTotales =  modulo3valorMiercoles + i + j*1.05;
                            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-                           console.log(hectareaje, has, margenError)
+                        //    console.log(hectareaje, has, margenError)
 
                            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
                                //Llenando campos
@@ -33,7 +47,7 @@ export function calcularDiaMiercoles(modulo, anterior){
                                document.querySelector(".modulo1miercoles").value = j;
                                document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                                document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                               calcularDiaJueves("Modulo1", j);
+                               calcularDiaJueves("Modulo1", j, hectareaje, margenError);
                                break;
                            }
                        }
@@ -44,6 +58,7 @@ export function calcularDiaMiercoles(modulo, anterior){
            break;
        case "Modulo2":
            const modulo2valormiercoles = 53 - anterior;
+           console.log(modulo2valormiercoles)
            document.querySelector(".modulo2miercoles").value = modulo2valormiercoles;
 
            //For que comprueba los valores
@@ -51,12 +66,12 @@ export function calcularDiaMiercoles(modulo, anterior){
                const lineasTotales = modulo2valormiercoles + i*1.05;
                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+               if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                        //Llenando campos
                        document.querySelector(".modulo1miercoles").value = i;
                        document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                        document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                       calcularDiaJueves("Modulo1", i);
+                       calcularDiaJueves("Modulo1", i, hectareaje, margenError);
                        break;
                }else {
                    if (i === 52) {
@@ -64,17 +79,33 @@ export function calcularDiaMiercoles(modulo, anterior){
                            const lineasTotales =  modulo2valormiercoles + i*1.05 + j*2/6;
                            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-                           console.log(hectareaje, has, margenError)
-
                            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
                                //Llenando campos
                                document.querySelector(".modulo1miercoles").value = i;
                                document.querySelector(".modulo4miercoles").value = j;
                                document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                                document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                               calcularDiaJueves("Modulo4", j);
+                               calcularDiaJueves("Modulo4", j, hectareaje, margenError);
                                break;
-                           }
+                           }else{
+                            if(j ===53){
+                                for (let k = 1; k <= 52; k++) {
+                                 const lineasTotales =  modulo2valormiercoles + i*1.05 + j*2/6 + k;
+                                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+      
+                                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                                     //Llenando campos
+                                     document.querySelector(".modulo1miercoles").value = i;
+                                     document.querySelector(".modulo4miercoles").value = j;
+                                     document.querySelector(".modulo3miercoles").value = k;
+                                     document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
+                                     document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
+                                     calcularDiaJueves("Modulo3",k, hectareaje, margenError)
+                                     break;
+                                 }
+                                }
+                            }
+                        }
                        }
                    }
                }
@@ -90,12 +121,12 @@ export function calcularDiaMiercoles(modulo, anterior){
                const lineasTotales = modulo1valormiercoles*1.05 + i*2/6;
                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+               if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                        //Llenando campos
                        document.querySelector(".modulo4miercoles").value = i;
                        document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                        document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                       calcularDiaJueves("Modulo4", i);
+                       calcularDiaJueves("Modulo4", i, hectareaje, margenError);
                        break;
                }else {
                    if (i === 53) {
@@ -103,17 +134,33 @@ export function calcularDiaMiercoles(modulo, anterior){
                            const lineasTotales =  modulo1valormiercoles*1.05 + i*2/6 + j;
                            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-                           console.log(hectareaje, has, margenError)
-
                            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
                                //Llenando campos
                                document.querySelector(".modulo4miercoles").value = i;
-                               document.querySelector(".modulo2miercoles").value = j;
+                               document.querySelector(".modulo3miercoles").value = j;
                                document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                                document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                               calcularDiaJueves("Modulo3", j);
+                               calcularDiaJueves("Modulo3", j, hectareaje, margenError);
                                break;
-                           }
+                           }else{
+                            if(j ===52){
+                                for (let k = 1; k <= 53; k++) {
+                                 const lineasTotales =  modulo1valormiercoles*1.05 + i*2/6 + j + k;
+                                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+      
+                                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+                                     //Llenando campos
+                                     document.querySelector(".modulo4miercoles").value = i;
+                                     document.querySelector(".modulo3miercoles").value = j;
+                                     document.querySelector(".modulo2miercoles").value = k;
+                                     document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
+                                     document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
+                                     calcularDiaJueves("Modulo2",k, hectareaje, margenError)
+                                     break;
+                                 }
+                                }
+                            }
+                        }
                        }
                    }
                }
@@ -128,12 +175,12 @@ export function calcularDiaMiercoles(modulo, anterior){
                const lineasTotales = modulo4valormiercoles*2/6 + i;
                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+               if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                        //Llenando campos
                        document.querySelector(".modulo3miercoles").value = i;
                        document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                        document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                       calcularDiaJueves("Modulo3", i);
+                       calcularDiaJueves("Modulo3", i, hectareaje, margenError);
                        break;
                }else {
                    if (i === 53) {
@@ -149,7 +196,7 @@ export function calcularDiaMiercoles(modulo, anterior){
                                document.querySelector(".modulo2miercoles").value = j;
                                document.querySelector(".lineastotalesmiercoles").value = Math.round(lineasTotales*100)/100;
                                document.querySelector(".hasmiercoles").value = Math.round(has*100)/100;
-                               calcularDiaJueves("Modulo2", j);
+                               calcularDiaJueves("Modulo2", j, hectareaje, margenError);
                                break;
                            }
                        }
