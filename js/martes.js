@@ -1,35 +1,22 @@
  import { terreno } from "../index.js";
+ import { validarHasAntes } from "./funciones.js";
  import { calcularDiaMiercoles } from "./miercoles.js";
  
  export function calcularDiaMartes(modulo, anterior, hectareaje, margenError){
-     console.log(hectareaje)
-     console.log(margenError)
+
     switch (modulo) {
         
         case "Modulo3":
             let modulo3valorMartes = 52 - anterior;
             document.querySelector(".modulo3martes").value = modulo3valorMartes;
 
-            
             //Deshabilitar los campos
             document.querySelector(".modulo4martes").disabled = true;
             document.querySelector(".modulo2martes").disabled = true;
             document.querySelector(".modulo1martes").disabled = true;
 
             //Validar que el campo cumpla con el has
-            let has = Math.round((modulo3valorMartes*terreno/10000)*100)/100;
-            console.log(has)
-            while (has >= hectareaje) {
-                modulo3valorMartes--;
-                has = Math.round((modulo3valorMartes*terreno/10000)*100)/100;
-                
-                //Llenado de campos
-                document.querySelector(".modulo3martes").value = modulo3valorMartes;
-                document.querySelector(".lineastotalesmartes").value = Math.round(modulo3valorMartes*100)/100;
-                document.querySelector(".hasmartes").value = Math.round(has*100)/100;
-                calcularDiaMiercoles("Modulo3", modulo3valorMartes+anterior, hectareaje, margenError);
-                break
-            }
+            validarHasAntes(modulo3valorMartes,"modulo3martes", terreno, "martes", "Modulo3", hectareaje, anterior, margenError, calcularDiaMiercoles);
 
             //For que comprueba los valores
             for (let i = 1; i <= 53; i++) {
@@ -68,11 +55,14 @@
             console.log(anterior);
             document.querySelector(".modulo2martes").value = modulo2valorMartes;
 
+             //Validar que el campo cumpla con el has
+            validarHasAntes(modulo2valorMartes,"modulo2martes", terreno, "martes", "Modulo2", hectareaje, anterior, margenError, calcularDiaMiercoles);
+
             //For que comprueba los valores
             for (let i = 1; i <= 52; i++) {
                 const lineasTotales = modulo2valorMartes + i*1.05;
                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
-
+                
                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                         //Llenando campos
                         document.querySelector(".modulo1martes").value = i;
@@ -122,6 +112,9 @@
         case "Modulo1":
             const modulo1valorMartes = 52 - anterior;
             document.querySelector(".modulo1martes").value = modulo1valorMartes;
+
+             //Validar que el campo cumpla con el has
+           validarHasAntes(modulo1valorMartes,"modulo3martes", terreno, "martes", "Modulo1", hectareaje, anterior, margenError, calcularDiaMiercoles);
 
             //For que comprueba los valores
             for (let i = 1; i <= 53; i++) {

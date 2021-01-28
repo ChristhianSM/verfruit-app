@@ -17,7 +17,7 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                const lineasTotales = modulo3valorsabado + i;
                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+               if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                        //Llenando campos
                        document.querySelector(".modulo2sabado").value = i;
                        document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;
@@ -103,7 +103,7 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                const lineasTotales = modulo1valorsabado*1.05 + i*2/6;
                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-               if (has >= (hectareaje - margenError - 0.01) && has <= (hectareaje + margenError)) {
+               if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
                        //Llenando campos
                        document.querySelector(".modulo4sabado").value = i;
                        document.querySelector(".lineastotalessabado").value = Math.round(lineasTotales*100)/100;

@@ -1,4 +1,5 @@
 import { calcularDiaMartes } from "./js/martes.js";
+import { validarHasAntes, encontrarValorModulos } from "./js/funciones.js";
 
 //Constantes
 // export let hectareaje = 10;
@@ -35,40 +36,43 @@ function calcularProgramacion(e){
         document.querySelector(".modulo1lunes").disabled = true;
 
         const modulo4valor = Math.round((modulo4lunes*2/6)*100)/100;
-    
-        //For que comprueba los valores
-        for (let i = 1; i <= 52; i++) {
-            const lineasTotales = modulo4valor + i;
-            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
-            
-            //5.78 5.74 - 5.82 ----------> 5.73 o 5.83
-            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
-                    //Llenando campos
-                    document.querySelector(".modulo3lunes").value = i;
-                    document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                    document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                    calcularDiaMartes("Modulo3",i, hectareaje , margenError);
-                    break;
-            }else {
-                if (i === 52) {
-                    for (let j = 1; j <= 53; j++) {
-                        
-                        const lineasTotales =  modulo4valor + i + j;
-                        const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+        
+        //Funcion que encuentra los valores de las siguientes celdas
+        encontrarValorModulos(modulo4valor, "Modulo4","modulo3lunes","modulo2lunes","modulo1lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
 
-                        if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                             //Llenando campos
-                            document.querySelector(".modulo3lunes").value = i;
-                            document.querySelector(".modulo2lunes").value = j;
-                            document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                            document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                            calcularDiaMartes("Modulo2",j, hectareaje, margenError);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        //For que comprueba los valores
+        // for (let i = 1; i <= 52; i++) {
+        //     const lineasTotales = modulo4valor + i;
+        //     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+            
+        //     //5.78 5.74 - 5.82 ----------> 5.73 o 5.83
+        //     if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
+        //             //Llenando campos
+        //             document.querySelector(".modulo3lunes").value = i;
+        //             document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+        //             document.querySelector(".haslunes").value = Math.round(has*100)/100;
+        //             calcularDiaMartes("Modulo3",i, hectareaje , margenError);
+        //             break;
+        //     }else {
+        //         if (i === 52) {
+        //             for (let j = 1; j <= 53; j++) {
+                        
+        //                 const lineasTotales =  modulo4valor + i + j;
+        //                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+        //                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+        //                      //Llenando campos
+        //                     document.querySelector(".modulo3lunes").value = i;
+        //                     document.querySelector(".modulo2lunes").value = j;
+        //                     document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+        //                     document.querySelector(".haslunes").value = Math.round(has*100)/100;
+        //                     calcularDiaMartes("Modulo2",j, hectareaje, margenError);
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }else if (modulo3lunes) {
         //Deshabilitar los campos
         document.querySelector(".modulo4lunes").disabled = true;
@@ -76,38 +80,44 @@ function calcularProgramacion(e){
         document.querySelector(".modulo1lunes").disabled = true;
 
         const modulo3valor = modulo3lunes;
-    
+
+        //Validar que el campo cumpla con el has
+        validarHasAntes(modulo3valor,"modulo3lunes", terreno, "lunes", "Modulo3", hectareaje, 0, margenError, calcularDiaMartes);
+        
+        //Funcion que encuentra los valores de las siguientes celdas
+        encontrarValorModulos(modulo3valor, "Modulo3","modulo2lunes","modulo1lunes","modulo4lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
+
         //For que comprueba los valores
-        for (let i = 1; i <= 53; i++) {
-            const lineasTotales = modulo3valor + i;
-            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+        // for (let i = 1; i <= 53; i++) {
+        //     const lineasTotales = modulo3valor + i;
+        //     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
-                    //Llenando campos
-                    document.querySelector(".modulo2lunes").value = i;
-                    document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                    document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                    calcularDiaMartes("Modulo2", i, hectareaje, margenError);
-                    break;
-            }else {
-                if (i === 53) {
-                    for (let j = 1; j <= 52; j++) {
-                        const lineasTotales =  modulo3valor + i + j*1.05;
-                        const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+        //     if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
+        //             //Llenando campos
+        //             document.querySelector(".modulo2lunes").value = i;
+        //             document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+        //             document.querySelector(".haslunes").value = Math.round(has*100)/100;
+        //             calcularDiaMartes("Modulo2", i, hectareaje, margenError);
+        //             break;
+        //     }else {
+        //         if (i === 53) {
+        //             for (let j = 1; j <= 52; j++) {
+        //                 const lineasTotales =  modulo3valor + i + j*1.05;
+        //                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-                        if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                             //Llenando campos
-                            document.querySelector(".modulo2lunes").value = i;
-                            document.querySelector(".modulo1lunes").value = j;
-                            document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                            document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                            calcularDiaMartes("Modulo1", j, hectareaje, margenError);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        //                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+        //                      //Llenando campos
+        //                     document.querySelector(".modulo2lunes").value = i;
+        //                     document.querySelector(".modulo1lunes").value = j;
+        //                     document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+        //                     document.querySelector(".haslunes").value = Math.round(has*100)/100;
+        //                     calcularDiaMartes("Modulo1", j, hectareaje, margenError);
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
     else{
         if (modulo2lunes) {
@@ -117,56 +127,62 @@ function calcularProgramacion(e){
             document.querySelector(".modulo1lunes").disabled = true;
 
             const modulo2valor = modulo2lunes;
-        
-            //For que comprueba los valores
-            for (let i = 1; i <= 52; i++) {
-                const lineasTotales = modulo2valor + i*1.05;
-                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
-    
-                if (has >= (hectareaje - margenError ) && has <= (hectareaje + margenError)) {
-                        //Llenando campos
-                        document.querySelector(".modulo1lunes").value = i;
-                        document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                        document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                        calcularDiaMartes("Modulo1", i, hectareaje, margenError);
-                        break;
-                }else {
-                    if (i === 52) {
-                        for (let j = 1; j <= 53; j++) {
-                            const lineasTotales =  modulo2valor + i*1.05 + j*2/6;
-                            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-                            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                                 //Llenando campos
-                                document.querySelector(".modulo1lunes").value = i;
-                                document.querySelector(".modulo4lunes").value = j;
-                                document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                                document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                                calcularDiaMartes("Modulo4", j, hectareaje, margenError);
-                                break;
-                            }else{
-                                if(j ===53){
-                                    for (let k = 1; k <= 52; k++) {
-                                     const lineasTotales =  modulo2valor + i*1.05 + j*2/6 + k;
-                                     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+            //Validar que el campo cumpla con el has
+            validarHasAntes(modulo2valor,"modulo2lunes", terreno, "lunes", "Modulo2", hectareaje, 0, margenError, calcularDiaMartes);
+
+            //Funcion que encuentra los valores de las siguientes celdas
+            encontrarValorModulos(modulo2valor, "Modulo2","modulo1lunes","modulo4lunes","modulo3lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
+
+            //For que comprueba los valores
+            // for (let i = 1; i <= 52; i++) {
+            //     const lineasTotales = modulo2valor + i*1.05;
+            //     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+    
+            //     if (has >= (hectareaje - margenError ) && has <= (hectareaje + margenError)) {
+            //             //Llenando campos
+            //             document.querySelector(".modulo1lunes").value = i;
+            //             document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //             document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //             calcularDiaMartes("Modulo1", i, hectareaje, margenError);
+            //             break;
+            //     }else {
+            //         if (i === 52) {
+            //             for (let j = 1; j <= 53; j++) {
+            //                 const lineasTotales =  modulo2valor + i*1.05 + j*2/6;
+            //                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+
+            //                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+            //                      //Llenando campos
+            //                     document.querySelector(".modulo1lunes").value = i;
+            //                     document.querySelector(".modulo4lunes").value = j;
+            //                     document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //                     document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //                     calcularDiaMartes("Modulo4", j, hectareaje, margenError);
+            //                     break;
+            //                 }else{
+            //                     if(j ===53){
+            //                         for (let k = 1; k <= 52; k++) {
+            //                          const lineasTotales =  modulo2valor + i*1.05 + j*2/6 + k;
+            //                          const has = Math.round((lineasTotales*terreno/10000)*100)/100;
           
-                                     if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                                         //Llenando campos
-                                         document.querySelector(".modulo1lunes").value = i;
-                                         document.querySelector(".modulo4lunes").value = j;
-                                         document.querySelector(".modulo3lunes").value = k;
-                                         document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                                         document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                                         calcularDiaMartes("Modulo3",k, hectareaje, margenError)
-                                         break;
-                                     }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //                          if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+            //                              //Llenando campos
+            //                              document.querySelector(".modulo1lunes").value = i;
+            //                              document.querySelector(".modulo4lunes").value = j;
+            //                              document.querySelector(".modulo3lunes").value = k;
+            //                              document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //                              document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //                              calcularDiaMartes("Modulo3",k, hectareaje, margenError)
+            //                              break;
+            //                          }
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     else{
         if (modulo1lunes) {
@@ -176,56 +192,62 @@ function calcularProgramacion(e){
             document.querySelector(".modulo2lunes").disabled = true;
             
             const modulo1valor = modulo1lunes;
-        
+            
+            //Validar que el campo cumpla con el has
+            validarHasAntes(modulo1valor,"modulo1lunes", terreno, "lunes", "Modulo1", hectareaje, 0, margenError, calcularDiaMartes);
+
+            //Funcion que encuentra los valores de las siguientes celdas
+            encontrarValorModulos(modulo1valor, "Modulo1","modulo4lunes","modulo3lunes","modulo2lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
+
             //For que comprueba los valores
-            for (let i = 1; i <= 53; i++) {
-                const lineasTotales = modulo1valor*1.05 + i*2/6;
-                const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+            // for (let i = 1; i <= 53; i++) {
+            //     const lineasTotales = modulo1valor*1.05 + i*2/6;
+            //     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
     
-                if (has >= (hectareaje - margenError ) && has <= (hectareaje + margenError)) {
-                        //Llenando campos
-                        document.querySelector(".modulo4lunes").value = i;
-                        document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                        document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                        calcularDiaMartes("Modulo4", i, hectareaje, margenError);
-                        break;
-                }else {
-                    if (i === 53) {
-                        for (let j = 1; j <= 52; j++) {
-                            const lineasTotales =  modulo1valor*1.05 + i*2/6 + j;
-                            const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+            //     if (has >= (hectareaje - margenError ) && has <= (hectareaje + margenError)) {
+            //             //Llenando campos
+            //             document.querySelector(".modulo4lunes").value = i;
+            //             document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //             document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //             calcularDiaMartes("Modulo4", i, hectareaje, margenError);
+            //             break;
+            //     }else {
+            //         if (i === 53) {
+            //             for (let j = 1; j <= 52; j++) {
+            //                 const lineasTotales =  modulo1valor*1.05 + i*2/6 + j;
+            //                 const has = Math.round((lineasTotales*terreno/10000)*100)/100;
     
-                            if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                                 //Llenando campos
-                                document.querySelector(".modulo4lunes").value = i;
-                                document.querySelector(".modulo3lunes").value = j;
-                                document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                                document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                                calcularDiaMartes("Modulo3", j, hectareaje, margenError);
-                                break;
-                            }else{
-                                if(j ===52){
-                                    for (let k = 1; k <= 53; k++) {
-                                     const lineasTotales =  modulo1valor*1.05 + i*2/6 + j + k;
-                                     const has = Math.round((lineasTotales*terreno/10000)*100)/100;
+            //                 if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+            //                      //Llenando campos
+            //                     document.querySelector(".modulo4lunes").value = i;
+            //                     document.querySelector(".modulo3lunes").value = j;
+            //                     document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //                     document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //                     calcularDiaMartes("Modulo3", j, hectareaje, margenError);
+            //                     break;
+            //                 }else{
+            //                     if(j ===52){
+            //                         for (let k = 1; k <= 53; k++) {
+            //                          const lineasTotales =  modulo1valor*1.05 + i*2/6 + j + k;
+            //                          const has = Math.round((lineasTotales*terreno/10000)*100)/100;
           
-                                     if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
-                                         //Llenando campos
-                                         document.querySelector(".modulo4lunes").value = i;
-                                         document.querySelector(".modulo3lunes").value = j;
-                                         document.querySelector(".modulo2lunes").value = k;
-                                         document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
-                                         document.querySelector(".haslunes").value = Math.round(has*100)/100;
-                                         calcularDiaMartes("Modulo2",k, hectareaje, margenError)
-                                         break;
-                                     }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //                          if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)){
+            //                              //Llenando campos
+            //                              document.querySelector(".modulo4lunes").value = i;
+            //                              document.querySelector(".modulo3lunes").value = j;
+            //                              document.querySelector(".modulo2lunes").value = k;
+            //                              document.querySelector(".lineastotaleslunes").value = Math.round(lineasTotales*100)/100;
+            //                              document.querySelector(".haslunes").value = Math.round(has*100)/100;
+            //                              calcularDiaMartes("Modulo2",k, hectareaje, margenError)
+            //                              break;
+            //                          }
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
