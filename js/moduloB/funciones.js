@@ -104,16 +104,16 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
        
         switch (nombreModulo) {
             case "Modulo4":
-                lineasTotales = moduloValor*2/6 + i;
+                lineasTotales = moduloValor*4/6 + i;
                 break;
             case "Modulo3":
                 lineasTotales = moduloValor + i;
                 break;
             case "Modulo2":
-                lineasTotales = moduloValor + i*1.05;
+                lineasTotales = moduloValor + i;
                 break;
             case "Modulo1":
-                lineasTotales = moduloValor*1.05 + i*2/6;
+                lineasTotales = moduloValor* + i*4/6;
                 break;
             default:
                 break;
@@ -139,16 +139,16 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
                 for (let j = 1; j <= capacidad ; j++) {
                     switch (nombreModulo) {
                         case "Modulo4":
-                            lineasTotales =  moduloValor*2/6 + i + j;
+                            lineasTotales =  moduloValor*4/6 + i + j;
                             break;
                         case "Modulo3":
-                            lineasTotales =  moduloValor + i + j*1.05;
+                            lineasTotales =  moduloValor + i + j;
                             break;
                         case "Modulo2":
-                            lineasTotales =  moduloValor + i*1.05 + j*2/6 ;
+                            lineasTotales =  moduloValor + i + j*4/6 ;
                             break;
                         case "Modulo1":
-                            lineasTotales =  moduloValor*1.05 + i*2/6 + j;
+                            lineasTotales =  moduloValor + i*4/6 + j;
                             break;
                         default:
                             break;
@@ -171,16 +171,16 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
 
                                 switch (nombreModulo) {
                                     case "Modulo4":
-                                        lineasTotales = moduloValor*2/6 + i + j + k*1.05
+                                        lineasTotales = moduloValor*4/6 + i + j + k
                                         break;
                                     case "Modulo3":
-                                        lineasTotales = moduloValor + i + j*1.05 + k*2/6
+                                        lineasTotales = moduloValor + i + j + k*4/6
                                         break;
                                     case "Modulo2":
-                                        lineasTotales = moduloValor + i*1.05 + j*2/6 + k
+                                        lineasTotales = moduloValor + i + j*4/6 + k
                                         break;
                                     case "Modulo1":
-                                        lineasTotales = moduloValor + i*2/6 + j + k
+                                        lineasTotales = moduloValor + i*4/6 + j + k
                                         break;
                                     default:
                                         break;
