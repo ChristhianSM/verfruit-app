@@ -1,5 +1,5 @@
  import { terreno } from "../../indexB.js";
- import { validarHasAntes, encontrarValorModulos } from "./funciones.js";
+ import { validarHasAntes, encontrarValorModulos, validarMargenError } from "./funciones.js";
  import { calcularDiaMiercoles } from "./miercoles.js";
  
  export function calcularDiaMartes(modulo, anterior, hectareaje, margenError){
@@ -21,6 +21,9 @@
             //Funcion que encuentra los valores de las siguientes celdas
             encontrarValorModulos(modulo3valorMartes, "Modulo3","modulo2martesB","modulo1martesB","modulo4martesB","lineastotalesmartesB", "hasmartesB", hectareaje, terreno, margenError, calcularDiaMiercoles);
 
+            //Validar si tenemos que aumentar el margen de error
+            validarMargenError(document.querySelector(".modulo2martesB").value);
+
             break;
         case "Modulo2":
             const modulo2valorMartes = 53 - anterior;
@@ -31,6 +34,9 @@
 
             //Funcion que encuentra los valores de las siguientes celdas
             encontrarValorModulos(modulo2valorMartes, "Modulo2","modulo1martesB","modulo4martesB","modulo3martesB","lineastotalesmartesB", "hasmartesB", hectareaje, terreno, margenError, calcularDiaMiercoles);
+
+            //Validar si tenemos que aumentar el margen de error
+            validarMargenError(document.querySelector(".modulo1martesB").value);
             
             break;
         case "Modulo1":
@@ -43,6 +49,9 @@
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo1valorMartes, "Modulo1","modulo4martesB","modulo3martesB","modulo2martesB","lineastotalesmartesB", "hasmartesB", hectareaje, terreno, margenError, calcularDiaMiercoles);
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo4martesB").value);
+
             break;
         case "Modulo4":
             const modulo4valorMartes = 53 - anterior;
@@ -50,6 +59,9 @@
 
             //Funcion que encuentra los valores de las siguientes celdas
             encontrarValorModulos(modulo4valorMartes, "Modulo4","modulo3martesB","modulo2martesB","modulo1martesB","lineastotalesmartesB", "hasmartesB", hectareaje, terreno, margenError, calcularDiaMiercoles);
+
+            //Validar si tenemos que aumentar el margen de error
+            validarMargenError(document.querySelector(".modulo3martesB").value);
 
             break;
         default:

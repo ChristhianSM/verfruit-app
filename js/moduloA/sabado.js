@@ -42,6 +42,9 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                }
            }
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo2sabado").value);
+
            break;
        case "Modulo2":
            const modulo2valorsabado = 53 - anterior;
@@ -92,7 +95,11 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                        }
                    }
                }
-           }       
+           }   
+           
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo1sabado").value);
+
            break;
        case "Modulo1":
            const modulo1valorsabado = 52 - anterior;
@@ -144,6 +151,10 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                    }
                }
            }
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo4sabado").value);
+
            break;
        case "Modulo4":
            const modulo4valorsabado = 53 - anterior;
@@ -178,6 +189,10 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                    }
                }
            }
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo3sabado").value);
+
            break;
        default:
            break;

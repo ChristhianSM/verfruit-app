@@ -98,7 +98,7 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
                                             terreno, 
                                             margenError, calcularSiguienteDia, celdaSiguiente, celdaSiguienteOpcional, celdaSiguienteOpcional2){
     //For que comprueba los valores
-    for (let i = 1; i <= capacidadModuloSiguiente; i++) {
+    for (let i = 0; i <= capacidadModuloSiguiente; i++) {
 
         let lineasTotales;
        
@@ -120,7 +120,7 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
         }
         const has = Math.round((lineasTotales*terreno/10000)*100)/100;
 
-        //10 10.04 - 10.06 ----------> 5.73 o 5.83
+        // 9.94  - 10 -  10.06 
         if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
 
                 //Llenando campos
@@ -205,6 +205,18 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
                 }
             }
         }
+
+    }
+}
+
+
+//Funcion para validar el margen de error
+export function validarMargenError(moduloSiguientetxt ) {
+    if(moduloSiguientetxt === "" ){
+        document.querySelector(".alert").classList.remove("hide");
+        setTimeout(() => {
+            document.querySelector(".alert").classList.add("hide");
+        }, 4000); 
     }
 }
 

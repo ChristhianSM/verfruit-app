@@ -1,5 +1,5 @@
 import { calcularDiaMartes } from "./js/moduloA/martes.js";
-import { validarHasAntes, encontrarValorModulos,limpiarCampos } from "./js/moduloA/funciones.js";
+import { validarHasAntes, encontrarValorModulos, validarMargenError ,limpiarCampos } from "./js/moduloA/funciones.js";
 
 //Constantes
 // export let hectareaje = 10;
@@ -21,7 +21,10 @@ function calcularProgramacion(e){
     const margenError = Number(document.querySelector(".margenError").value);
 
     if (!hectareaje || !margenError) {
-        alert("Por favor ingresar el hectareaje y margen de error")
+        document.querySelector(".alert-info").classList.remove("hide");
+        setTimeout(() => {
+            document.querySelector(".alert-info").classList.add("hide");
+        }, 4000); 
     }
 
     //Variables de los campos
@@ -41,8 +44,9 @@ function calcularProgramacion(e){
         //Funcion que encuentra los valores de las siguientes celdas
         encontrarValorModulos(modulo4valor, "Modulo4","modulo3lunes","modulo2lunes","modulo1lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
 
-        console.log("Modulo 4")
-
+        //Validar si tenemos que aumentar el margen de error
+        validarMargenError(document.querySelector(".modulo3lunes").value);
+        
     }else 
         if (modulo3lunes) {
         //Deshabilitar los campos
@@ -57,8 +61,9 @@ function calcularProgramacion(e){
         
         //Funcion que encuentra los valores de las siguientes celdas
         encontrarValorModulos(modulo3valor, "Modulo3","modulo2lunes","modulo1lunes","modulo4lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
-
-        console.log("Modulo 3")
+        
+        //Validar si tenemos que aumentar el margen de error
+        validarMargenError(document.querySelector(".modulo2lunes").value);
 
     }else
         if (modulo2lunes) {
@@ -74,7 +79,9 @@ function calcularProgramacion(e){
 
             //Funcion que encuentra los valores de las siguientes celdas
             encontrarValorModulos(modulo2valor, "Modulo2","modulo1lunes","modulo4lunes","modulo3lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);
-            console.log("Modulo 2")
+
+            //Validar si tenemos que aumentar el margen de error
+            validarMargenError(document.querySelector(".modulo1lunes").value);
         }
     else
         if (modulo1lunes) {
@@ -90,7 +97,14 @@ function calcularProgramacion(e){
 
             //Funcion que encuentra los valores de las siguientes celdas
             encontrarValorModulos(modulo1valor, "Modulo1","modulo4lunes","modulo3lunes","modulo2lunes","lineastotaleslunes", "haslunes", hectareaje, terreno, margenError, calcularDiaMartes);       
-            console.log("Modulo 1")
+            
+            //Validar si tenemos que aumentar el margen de error
+            validarMargenError(document.querySelector(".modulo4lunes").value);
+        }else{
+            document.querySelector(".alert-warning").classList.remove("hide");
+            setTimeout(() => {
+                document.querySelector(".alert-warning").classList.add("hide");
+            }, 4000); 
         }
 }
 

@@ -1,4 +1,5 @@
 import { terreno } from "../../index.js";
+import { validarMargenError } from "./funciones.js";
  
 export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
     //Deshabilitamos los campos de hectareaje y de margen de error
@@ -41,6 +42,9 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                    }
                }
            }
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo2sabadoB").value);
 
            break;
        case "Modulo2":
@@ -92,7 +96,11 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                        }
                    }
                }
-           }       
+           }   
+           
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo1sabadoB").value);
+
            break;
        case "Modulo1":
            const modulo1valorsabado = 52 - anterior;
@@ -144,6 +152,10 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                    }
                }
            }
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo4sabadoB").value);
+
            break;
        case "Modulo4":
            const modulo4valorsabado = 53 - anterior;
@@ -178,6 +190,10 @@ export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
                    }
                }
            }
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo3sabadoB").value);
+
            break;
        default:
            break;

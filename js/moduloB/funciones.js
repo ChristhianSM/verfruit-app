@@ -208,6 +208,15 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
     }
 }
 
+//Funcion para validar el margen de error
+export function validarMargenError(moduloSiguientetxt ) {
+    if(moduloSiguientetxt === "" ){
+        document.querySelector(".alert").classList.remove("hide");
+        setTimeout(() => {
+            document.querySelector(".alert").classList.add("hide");
+        }, 4000); 
+    }
+}
 
 //Funcion de limpiar campos 
 export function limpiarCampos(e){

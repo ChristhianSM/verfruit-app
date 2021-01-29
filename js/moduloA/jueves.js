@@ -14,6 +14,9 @@ export function calcularDiaJueves(modulo, anterior, hectareaje, margenError){
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo3valorjueves, "Modulo3","modulo2jueves","modulo1jueves","modulo4jueves","lineastotalesjueves", "hasjueves", hectareaje, terreno, margenError, calcularDiaViernes);
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo2jueves").value);
+
            break;
        case "Modulo2":
            const modulo2valorjueves = 53 - anterior;
@@ -21,6 +24,9 @@ export function calcularDiaJueves(modulo, anterior, hectareaje, margenError){
 
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo2valorjueves, "Modulo2","modulo1jueves","modulo4jueves","modulo3jueves","lineastotalesjueves", "hasjueves", hectareaje, terreno, margenError, calcularDiaViernes);
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo1jueves").value);
 
            break;
        case "Modulo1":
@@ -33,6 +39,9 @@ export function calcularDiaJueves(modulo, anterior, hectareaje, margenError){
             //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo1valorjueves, "Modulo1","modulo4jueves","modulo3jueves","modulo2jueves","lineastotalesjueves", "hasjueves", hectareaje, terreno, margenError, calcularDiaViernes);
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo4jueves").value);
+
            break;
        case "Modulo4":
            const modulo4valorjueves = 53 - anterior;
@@ -41,6 +50,9 @@ export function calcularDiaJueves(modulo, anterior, hectareaje, margenError){
 
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo4valorjueves, "Modulo4","modulo3jueves","modulo2jueves","modulo1jueves","lineastotalesjueves", "hasjueves", hectareaje, terreno, margenError, calcularDiaViernes);
+
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo3jueves").value);
 
            break;
        default:

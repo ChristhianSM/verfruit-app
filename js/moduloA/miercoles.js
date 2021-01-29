@@ -1,5 +1,5 @@
 import { terreno } from "../../index.js";
-import { validarHasAntes, encontrarValorModulos } from "./funciones.js";
+import { validarHasAntes, encontrarValorModulos, validarMargenError } from "./funciones.js";
 import { calcularDiaJueves } from "./jueves.js";
  
 export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
@@ -13,8 +13,11 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
 
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo3valorMiercoles, "Modulo3","modulo2miercoles","modulo1miercoles","modulo4miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
-           break;
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo2miercoles").value);
+
+           break;
        case "Modulo2":
            let modulo2valormiercoles = 53 - anterior;
            console.log(modulo2valormiercoles)
@@ -26,6 +29,9 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo2valormiercoles, "Modulo2","modulo1miercoles","modulo4miercoles","modulo3miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo1miercoles").value);
+
            break;
        case "Modulo1":
            const modulo1valormiercoles = 52 - anterior;
@@ -36,6 +42,9 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo1valormiercoles, "Modulo1","modulo4miercoles","modulo3miercoles","modulo2miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
 
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo4miercoles").value);
+
            break;
        case "Modulo4":
            const modulo4valormiercoles = 53 - anterior;
@@ -44,6 +53,9 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo4valormiercoles, "Modulo4","modulo3miercoles","modulo2miercoles","modulo1miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
            
+           //Validar si tenemos que aumentar el margen de error
+           validarMargenError(document.querySelector(".modulo3miercoles").value);
+
            break;
        default:
            break;
