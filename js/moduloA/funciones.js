@@ -207,3 +207,68 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
         }
     }
 }
+
+//Funcion de limpiar campos 
+export function limpiarCampos(e){
+    e.preventDefault();
+
+    //Desbloqueando campos
+    document.querySelector(".modulo1lunes").disabled = false;
+    document.querySelector(".modulo2lunes").disabled = false;
+    document.querySelector(".modulo3lunes").disabled = false;
+    document.querySelector(".modulo4lunes").disabled = false;
+    document.querySelector(".hectareaje").disabled = false;
+    document.querySelector(".margenError").disabled = false;
+
+    //Limpiando Campos
+    document.querySelector(".modulo1lunes").value = "";
+    document.querySelector(".modulo2lunes").value = "";
+    document.querySelector(".modulo3lunes").value = "";
+    document.querySelector(".modulo4lunes").value = "";
+
+    document.querySelector(".modulo1martes").value = "";
+    document.querySelector(".modulo2martes").value = "";
+    document.querySelector(".modulo3martes").value = "";
+    document.querySelector(".modulo4martes").value = "";
+
+    document.querySelector(".modulo1miercoles").value = "";
+    document.querySelector(".modulo2miercoles").value = "";
+    document.querySelector(".modulo3miercoles").value = "";
+    document.querySelector(".modulo4miercoles").value = "";
+
+    document.querySelector(".modulo1jueves").value = "";
+    document.querySelector(".modulo2jueves").value = "";
+    document.querySelector(".modulo3jueves").value = "";
+    document.querySelector(".modulo4jueves").value = "";
+
+    document.querySelector(".modulo1viernes").value = "";
+    document.querySelector(".modulo2viernes").value = "";
+    document.querySelector(".modulo3viernes").value = "";
+    document.querySelector(".modulo4viernes").value = "";
+
+    document.querySelector(".modulo1sabado").value = "";
+    document.querySelector(".modulo2sabado").value = "";
+    document.querySelector(".modulo3sabado").value = "";
+    document.querySelector(".modulo4sabado").value = "";
+
+    document.querySelector(".lineastotaleslunes").value = "";
+    document.querySelector(".lineastotalesmartes").value = "";
+    document.querySelector(".lineastotalesmiercoles").value = "";
+    document.querySelector(".lineastotalesjueves").value = "";
+    document.querySelector(".lineastotalesviernes").value = "";
+    document.querySelector(".lineastotalessabado").value = "";
+
+    document.querySelector(".haslunes").value = "";
+    document.querySelector(".hasmartes").value = "";
+    document.querySelector(".hasmiercoles").value = "";
+    document.querySelector(".hasjueves").value = "";
+    document.querySelector(".hasviernes").value = "";
+    document.querySelector(".hassabado").value = "";
+
+    document.querySelector(".hectareaje").value = "";
+    document.querySelector(".margenError").value = "";
+
+    //Habilitamos Boton 
+    document.querySelector("#calcular").disabled = false;
+
+}

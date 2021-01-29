@@ -1,5 +1,5 @@
-import { calcularDiaMartes } from "./js/martes.js";
-import { validarHasAntes, encontrarValorModulos } from "./js/funciones.js";
+import { calcularDiaMartes } from "./js/moduloA/martes.js";
+import { validarHasAntes, encontrarValorModulos,limpiarCampos } from "./js/moduloA/funciones.js";
 
 //Constantes
 // export let hectareaje = 10;
@@ -10,7 +10,8 @@ export const terreno = 1170;
 
 bloquearCampos();
 
-document.querySelector("#calcular").addEventListener("click", calcularProgramacion)
+document.querySelector("#calcular").addEventListener("click", calcularProgramacion);
+document.querySelector("#limpiar").addEventListener("click", limpiarCampos);
 
 function calcularProgramacion(e){
     e.preventDefault();

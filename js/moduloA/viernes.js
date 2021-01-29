@@ -1,5 +1,5 @@
-import { terreno } from "../index.js";
-import { validarHasAntes } from "./funciones.js";
+import { terreno } from "../../index.js";
+import { validarHasAntes, encontrarValorModulos } from "./funciones.js";
 import { calcularDiaSabado } from "./sabado.js";
  
 export function calcularDiaViernes(modulo, anterior, hectareaje, margenError){

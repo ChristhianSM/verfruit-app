@@ -1,4 +1,4 @@
-import { terreno } from "../index.js";
+import { terreno } from "../../index.js";
 import { validarHasAntes,encontrarValorModulos } from "./funciones.js";
 import { calcularDiaViernes } from "./viernes.js";
  
