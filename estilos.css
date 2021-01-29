@@ -8,11 +8,19 @@ main{
 input{
     text-align: center;
     margin-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     width: 60px;
 }
 small {
     display: block;
+}
+
+form {
+    margin: 10px;
+}
+
+.titulos {
+    padding-left: 40px;
 }
 
 .nota{
@@ -21,19 +29,33 @@ small {
 }
 
 .modulos label{
-    margin-right: 28px;
+    justify-content: left;
+    margin-left: 90px;
+    margin-right:40px;
+}
+
+.lineas-totales label{
+    padding-left:80px ;
+    padding-right:20px ;
 }
 
 .has label{
-    margin-right: 67px;
+    padding-left:80px ;
+    padding-right:90px ;
 }
 
 .hect label {
-    margin-right: 23px;
+    padding-left:80px ;
+    padding-right:40px ;
+}
+
+.margen label {
+    padding-left:78px ;
+    padding-right:15px ;
 }
 
 .encabezado {
-    margin-left: 20px;
+    margin-left: 50px;
     width: 30px;
 }
 .encabezado1 {
@@ -57,6 +79,14 @@ input[type = 'submit']{
     border: none;
     border-radius: 10px;
     font-size: 20px;
+}
+input[type = 'text']{
+    margin-bottom: 5px;
+    width: 70px;
+}
+input[type = 'number']{
+    margin-bottom: 5px;
+    width: 70px;
 }
 
 .hide{
