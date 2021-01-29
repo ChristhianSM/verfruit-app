@@ -2,8 +2,6 @@
 
 export function validarHasAntes(valorModulo, modulo, terreno, dia, moduloSiguienteDia, hectareaje, anterior = 0, margenError, diaSiguiente ){
 
-    console.log("valorModulo :  "+valorModulo);
-    console.log("Hectareaje :  "+hectareaje);
     //Parametros
     // valorModulo : valor del modulo que corresponde a dicha celda
     // Modulo : Valor para la caja de texto en la interfaz
@@ -13,16 +11,13 @@ export function validarHasAntes(valorModulo, modulo, terreno, dia, moduloSiguien
     let has;
     has = moduloARepetir(moduloSiguienteDia, valorModulo, terreno, has);
 
-    console.log("has: " + has);
     while (has >= hectareaje) {
-        console.log(has)
         valorModulo--;
         console.log(valorModulo);
         has = moduloARepetir(moduloSiguienteDia, valorModulo, terreno, has);
         
         //Llenado de campos
         document.querySelector(`.${modulo}`).value = valorModulo;
-        console.log(valorModulo)
         document.querySelector(`.lineastotales${dia}`).value = Math.round(valorModulo*100)/100;
         document.querySelector(`.has${dia}`).value = Math.round(has*100)/100;
         diaSiguiente(`${moduloSiguienteDia}`, valorModulo+anterior, hectareaje, margenError);
@@ -106,10 +101,10 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
     for (let i = 1; i <= capacidadModuloSiguiente; i++) {
 
         let lineasTotales;
-
+       
         switch (nombreModulo) {
             case "Modulo4":
-                lineasTotales = moduloValor + i;
+                lineasTotales = moduloValor*2/6 + i;
                 break;
             case "Modulo3":
                 lineasTotales = moduloValor + i;
@@ -124,22 +119,27 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
                 break;
         }
         const has = Math.round((lineasTotales*terreno/10000)*100)/100;
-        
-        //5.78 5.74 - 5.82 ----------> 5.73 o 5.83
+
+        //10 10.04 - 10.06 ----------> 5.73 o 5.83
         if (has >= (hectareaje - margenError) && has <= (hectareaje + margenError)) {
+
                 //Llenando campos
                 document.querySelector(`.${nombreModulotxt}`).value = i;
+                console.log(i)
                 document.querySelector(`.${nombreLineasTotalestxt}`).value = Math.round(lineasTotales*100)/100;
                 document.querySelector(`.${nombreHastxt}`).value = Math.round(has*100)/100;
                 calcularSiguienteDia(`${celdaSiguiente}`,i, hectareaje , margenError);
                 break;
         }else {
             if (i === capacidadModuloSiguiente) {
-                for (let j = 1; j <= capacidadModuloSiguiente + 1; j++) {
-                    
+
+                //Cambiar la capacidad del siguiente modulo
+                const capacidad =  capacidadModuloSiguiente == 53 ? 52 : 53;
+
+                for (let j = 1; j <= capacidad ; j++) {
                     switch (nombreModulo) {
                         case "Modulo4":
-                            lineasTotales =  moduloValor + i + j;
+                            lineasTotales =  moduloValor*2/6 + i + j;
                             break;
                         case "Modulo3":
                             lineasTotales =  moduloValor + i + j*1.05;
@@ -159,17 +159,19 @@ function calcularValoresModulosSiguientes(capacidadModuloSiguiente,
                          //Llenando campos
                         document.querySelector(`.${nombreModulotxt}`).value = i;
                         document.querySelector(`.${nombreModuloOpcionaltxt}`).value = j;
+                        console.log("j : " + j)
                         document.querySelector(`.${nombreLineasTotalestxt}`).value = Math.round(lineasTotales*100)/100;
                         document.querySelector(`.${nombreHastxt}`).value = Math.round(has*100)/100;
                         calcularSiguienteDia(`${celdaSiguienteOpcional}`,j, hectareaje, margenError);
                         break;
                     }else{
-                        if(j ===capacidadModuloSiguiente){
-                            for (let k = 1; k <= capacidadModuloSiguiente; k++) {
+                        if(j ===capacidad){
+                            const capacidad =  capacidadModuloSiguiente == 53 ? 52 : 53;
+                            for (let k = 1; k <= capacidad; k++) {
 
                                 switch (nombreModulo) {
                                     case "Modulo4":
-                                        lineasTotales = moduloValor + i + j + k*1.05
+                                        lineasTotales = moduloValor*2/6 + i + j + k*1.05
                                         break;
                                     case "Modulo3":
                                         lineasTotales = moduloValor + i + j*1.05 + k*2/6
