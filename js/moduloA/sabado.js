@@ -1,4 +1,5 @@
 import { terreno } from "../../index.js";
+// import { validarMargenError } from "./funciones.js";
  
 export function calcularDiaSabado(modulo, anterior, hectareaje, margenError){
     //Deshabilitamos los campos de hectareaje y de margen de error

@@ -9,7 +9,7 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
            document.querySelector(".modulo3miercoles").value = modulo3valorMiercoles;
 
            //Validar que el campo cumpla con el has
-           validarHasAntes(modulo3valorMiercoles,"modulo3miercoles", terreno, "martes", "Modulo3", hectareaje, anterior, margenError, calcularDiaJueves);
+           validarHasAntes(modulo3valorMiercoles,"modulo3miercoles", terreno, "miercoles", "Modulo3", hectareaje, anterior, margenError, calcularDiaJueves);
 
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo3valorMiercoles, "Modulo3","modulo2miercoles","modulo1miercoles","modulo4miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
@@ -24,7 +24,7 @@ export function calcularDiaMiercoles(modulo, anterior, hectareaje, margenError){
            document.querySelector(".modulo2miercoles").value = modulo2valormiercoles;
 
            //Validar que el campo cumpla con el has
-           validarHasAntes(modulo2valormiercoles,"modulo2miercoles", terreno, "martes", "Modulo2", hectareaje, anterior, margenError, calcularDiaJueves);
+           validarHasAntes(modulo2valormiercoles,"modulo2miercoles", terreno, "miercoles", "Modulo2", hectareaje, anterior, margenError, calcularDiaJueves);
 
            //Funcion que encuentra los valores de las siguientes celdas
            encontrarValorModulos(modulo2valormiercoles, "Modulo2","modulo1miercoles","modulo4miercoles","modulo3miercoles","lineastotalesmiercoles", "hasmiercoles", hectareaje, terreno, margenError, calcularDiaJueves);
