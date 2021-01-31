@@ -20,7 +20,9 @@ export function validarHasAntes(valorModulo, modulo, terreno, dia, moduloSiguien
         document.querySelector(`.${modulo}`).value = valorModulo;
         document.querySelector(`.lineastotales${dia}`).value = Math.round(valorModulo*100)/100;
         document.querySelector(`.has${dia}`).value = Math.round(has*100)/100;
-        diaSiguiente(`${moduloSiguienteDia}`, valorModulo+anterior, hectareaje, margenError);
+        if (has <= hectareaje+margenError) {
+            diaSiguiente(`${moduloSiguienteDia}`, valorModulo+anterior, hectareaje, margenError);
+        }
     }
 
 }
